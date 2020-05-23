@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+<title>JJFresh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+		$(document).ready(function(){
+			if($("#email").val()!=""){
+			$.ajax({url:"check.php?email="+$("#email").val()+"&field=email",success:function(result){
+				$("#check1").html(result);}});
+			}
+				
+			$("#email").keyup(function(){
+				$.ajax({url:"check.php?email="+$("#email").val()+"&field=email",success:function(result){
+				$("#check1").html(result);}});
+			});
+		});
+
+		function finalcheck(){
+			var check1 = $("#check1").html();
+			if(check1 != "ok"){
+				alert("check your information, you need have 1 ok!");
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	</script>
+
+<style>
+.form_wrapper{
+text-align:center;
+	background:#fff;
+	border:1px solid #ddd;
+	margin:0 auto;
+	width:350px;
+	font-size:16px;
+	-moz-box-shadow:1px 1px 7px #ccc;
+	-webkit-box-shadow:1px 1px 7px #ccc;
+	box-shadow:1px 1px 7px #ccc;
+}
+.form_wrapper input[type="text"],
+.form_wrapper input[type="password"]{
+	border: solid 1px #E5E5E5;
+	margin: 5px 30px 0px 30px;
+	padding: 9px;
+	display:block;
+	font-size:16px;
+	width:76%;
+	background: #FFFFFF;
+	background: 
+		-webkit-gradient(
+			linear, 
+			left top, 
+			left 25, 
+			from(#FFFFFF), 
+			color-stop(4%, #EEEEEE), 
+			to(#FFFFFF)
+		);
+	background: 
+		-moz-linear-gradient(
+			top, 
+			#FFFFFF,
+			#EEEEEE 1px, 
+			#FFFFFF 25px
+			);
+	-moz-box-shadow: 0px 0px 8px #f0f0f0;
+	-webkit-box-shadow: 0px 0px 8px #f0f0f0;
+	box-shadow: 0px 0px 8px #f0f0f0;
+}
+.form_wrapper input[type="text"]:focus,
+.form_wrapper input[type="password"]:focus{
+	background:#feffef;
+}
+.form_wrapper input[type="submit"] {
+
+	background: #e3e3e3;
+	border: 1px solid #ccc;
+	color: #333;
+	font-family: "Trebuchet MS", "Myriad Pro", sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 0 9px;
+	text-align: center;
+	width: 150px;
+	cursor:pointer;
+	margin:15px 20px 10px 10px;
+	text-shadow: 0 1px 0px #fff;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0px 0px 2px #fff inset;
+	-webkit-box-shadow: 0px 0px 2px #fff inset;
+	box-shadow: 0px 0px 2px #fff inset;
+}
+.form_wrapper input[type="submit"]:hover {
+	background: #d9d9d9;
+	-moz-box-shadow: 0px 0px 2px #eaeaea inset;
+	-webkit-box-shadow: 0px 0px 2px #eaeaea inset;
+	box-shadow: 0px 0px 2px #eaeaea inset;
+	color: #222;
+}
+</style>
+</head>
+<body >
+<div class="form_wrapper">
+<div class="w3layouts-main">
+	<h2>JJFresh</h2>
+	<h2>Registration</h2>
+		<form action="reg.php" method="post" >
+			<input type="text" class="ggg"     name="zh"    id="email"   placeholder="Email" required=""><div id="check1"></div>
+			<input type="password" class="ggg" name="password" placeholder="Password" required="">
+			<input type="text" class="ggg" name="address" placeholder="Address" required="">
+			<center>
+			<span><input type="radio" name="user" value="1" />customer</span></center>
+				<div class="clearfix"></div>
+				<input  onclick="return finalcheck();" style="text-align:center;" type="submit" value="submit" name="register">
+		</form>
+</div>
+</div>
+<!-- <script src="js/bootstrap.js"></script>
+<script src="js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/jquery.scrollTo.js"></script> -->
+</body>
+</html>

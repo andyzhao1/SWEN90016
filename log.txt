@@ -1,0 +1,12 @@
+wordpress
+SWEN90016-ER3-TEAM6
+SWEN90016
+
+database
+Host: localhost
+id13652771_root
+Password_123456
+
+send email account:
+jjfreshautomail@gmail.com
+JJFresh.123
