@@ -15,6 +15,16 @@ $productName=$_POST['productName'];
 $number = $_POST['number'];
 $size=$_POST['size'];
 
+$sql1="select stock from product where name='$productName'";
+mysqli_query("set names 'utf8'");
+$res1=mysqli_query($conn,$sql1);
+$row=mysqli_fetch_row($res1);
+$stock_left = $row[0] - $number;
+if($stock_left < 0){
+	echo "<script> alert('Sorry, we do not have enough products in stock!');</script>";
+	echo "<script> history.go(-1);</script>";
+	exit(1);
+}
 
 date_default_timezone_set('Australia/Melbourne');
 $deliverdate = $_POST['ddate'];
@@ -68,6 +78,11 @@ while($row=mysqli_fetch_row($res)){
 }
 $index = $index + 1;
 
+$sql="select address from account where email='$email'";
+$res=mysqli_query($conn,$sql);
+$row=mysqli_fetch_row($res);
+$address = $row[0];
+
 $sql="INSERT INTO purchase VALUES ('$email', '$productName', '$number', '$address', '$size', '$price', '$index', '$deliverdate', '$delivertime')";
 $res=mysqli_query($conn,$sql);
 
@@ -75,7 +90,6 @@ $sql1="select stock from product where name='$productName'";
 mysqli_query("set names 'utf8'");
 $res1=mysqli_query($conn,$sql1);
 $row=mysqli_fetch_row($res1);
-
 $stock_left = $row[0] - $number;
 $sql2="UPDATE product SET stock='$stock_left' WHERE name='$productName'";
 mysqli_query("set names 'utf8'");

@@ -8,6 +8,7 @@ $user=$_POST['user'];
 if(!isset($user)){
     echo "<script> alert('please select a user type');</script>";
     echo "<script> history.go(-1);</script>";
+	exit(1);
 }
 $conn=mysqli_connect("localhost","root","SHENGzhe0426","jjfresh"); 
 
